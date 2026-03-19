@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "SILANDRI"
   text: "席兰德里"
-  tagline: My great project tagline
+  tagline: 团结 平等 秩序
   actions:
     - theme: brand
       text: Markdown Examples
@@ -15,11 +15,11 @@ hero:
       link: /api-examples
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 团结
+    details: 很团结
+  - title: 平等
+    details: 很平等
+  - title: 秩序
+    details: 很有秩序
 ---
 
