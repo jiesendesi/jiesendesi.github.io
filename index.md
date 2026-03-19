@@ -11,7 +11,7 @@ hero:
       text: 开始
       link: /markdown-examples
   image:
-      src: /public/image/SILANDRI/SILANDRI.png
+      src: /image/SILANDRI/SILANDRI.png
       alt: SILANDRI
 
 features:

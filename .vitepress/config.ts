@@ -2,12 +2,12 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 
-const repo = process.env.VITEPRESS_REPO?.replace(/\/+$/, "");
-
 export default defineConfig({
+  base,
   title: "SILANDRI",
   description: "席兰德里",
-    lang: "zh-CN",
+  lang: "zh-CN",
+  head: [['link', { rel: 'icon', type: 'image/png', href: `/image/SILANDRI/SILANDRI.png` }]],
   cleanUrls: true,
   lastUpdated: true,
   markdown: {
@@ -32,7 +32,7 @@ export default defineConfig({
         ]
       }
     ],
-    logo: '/public/image/SILANDRI/SILANDRI.png',
+    logo: '/image/SILANDRI/SILANDRI.png',
     docFooter: {
       prev: "上一页",
       next: "下一页"
@@ -42,7 +42,7 @@ export default defineConfig({
       copyright: `Copyright © 2023-present SILANDRI`
     },
     editLink: {
-      pattern: `${repo}/edit/main/:path`,
+      pattern: `https://github.com/jiesendesi/jiesendesi.github.io/edit/main/:path`,
       text: "在 GitHub 上编辑此页"
     }
 
