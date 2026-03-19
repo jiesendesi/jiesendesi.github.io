@@ -46,7 +46,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile # 或 npm ci / yarn install / bun install
       - name: Build with VitePress
-        run: pnpm run build # 或 npm run build / yarn build / bun run build
+        run: pnpm run silandri:build # 或 npm run build / yarn build / bun run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
