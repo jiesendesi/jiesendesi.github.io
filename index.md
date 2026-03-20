@@ -16,10 +16,10 @@ hero:
 
 features:
   - title: 团结
-    details: 很团结
+    details: 组织的整体利益高于个人利益
   - title: 平等
-    details: 很平等
+    details: 地位对等、零排挤政策、试错容忍
   - title: 秩序
-    details: 很有秩序
+    details: 严格执行标准化作业程序 (SOP)
 ---
 
