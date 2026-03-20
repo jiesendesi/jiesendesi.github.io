@@ -18,26 +18,30 @@ export default defineConfig({
     outline: { level: "deep", label: "目录" },
     search: { provider: "local" },
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: '首页', link: '/' },
+      { text: 'Examples', link: '/markdown-examples' },
+      { text: "成员", link: "/members" }
     ],
 
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
-    ],
+    sidebar: {
+      "/guide/": [
+        {
+          text: "开始之前……",
+          collapsed: false,
+          items: [
+            { text: "介绍", link: "/guide/intro" },
+            { text: "Markdown 解析测试", link: "/guide/markdown-test" }
+          ]
+        }
+      ]
+    },
     logo: '/image/SILANDRI/SILANDRI.png',
     docFooter: {
       prev: "上一页",
       next: "下一页"
     },
     footer: {
-      message: "C.S.T.F. 为此 Wiki 的建立付出了不可磨灭的贡献。",
+      message: "Released under the MIT License.",
       copyright: `Copyright © 2023-present SILANDRI`
     },
     editLink: {

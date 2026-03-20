@@ -5,11 +5,11 @@ layout: home
 hero:
   name: "SILANDRI"
   text: "席兰德里"
-  tagline: 团结 平等 秩序
+  tagline: 跨平台的建设与竞技社群
   actions:
     - theme: brand
-      text: 开始
-      link: /markdown-examples
+      text: 阅读Wiki
+      link: /guide/intro
   image:
       src: /image/SILANDRI/SILANDRI.png
       alt: SILANDRI
