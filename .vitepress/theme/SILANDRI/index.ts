@@ -3,7 +3,6 @@ import { h } from "vue";
 import HomePage from "./HomePage.vue";
 import ScrambleHeroTitle from "./ScrambleHeroTitle";
 import CustomCursor from "./CustomCursor.vue";
-import "./fonts.css";
 import "./style.css";
 
 export default {
