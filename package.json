@@ -19,5 +19,10 @@
         "@algolia/client-search"
       ]
     }
+  },
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@fontsource/noto-sans-sc": "^5.2.9",
+    "@fontsource/playfair-display": "^5.2.8"
   }
 }

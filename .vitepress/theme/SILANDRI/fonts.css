@@ -1,0 +1,20 @@
+/* Local self-hosted fonts via @fontsource (all use font-display: swap). */
+
+/* Base Chinese UI font */
+@import "@fontsource/noto-sans-sc/chinese-simplified-300.css";
+@import "@fontsource/noto-sans-sc/chinese-simplified-400.css";
+@import "@fontsource/noto-sans-sc/chinese-simplified-500.css";
+@import "@fontsource/noto-sans-sc/chinese-simplified-700.css";
+@import "@fontsource/noto-sans-sc/chinese-simplified-900.css";
+
+/* Monospace */
+@import "@fontsource/jetbrains-mono/300.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/700.css";
+@import "@fontsource/jetbrains-mono/800.css";
+
+/* Display serif */
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/playfair-display/900.css";
+@import "@fontsource/playfair-display/700-italic.css";
+@import "@fontsource/playfair-display/900-italic.css";

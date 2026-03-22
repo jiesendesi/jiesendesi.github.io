@@ -4,6 +4,17 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  '@fontsource/jetbrains-mono':
+    specifier: ^5.2.8
+    version: 5.2.8
+  '@fontsource/noto-sans-sc':
+    specifier: ^5.2.9
+    version: 5.2.9
+  '@fontsource/playfair-display':
+    specifier: ^5.2.8
+    version: 5.2.8
+
 devDependencies:
   vitepress:
     specifier: ^1.6.4
@@ -460,6 +471,18 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@fontsource/jetbrains-mono@5.2.8:
+    resolution: {integrity: sha512-6w8/SG4kqvIMu7xd7wt6x3idn1Qux3p9N62s6G3rfldOUYHpWcc2FKrqf+Vo44jRvqWj2oAtTHrZXEP23oSKwQ==}
+    dev: false
+
+  /@fontsource/noto-sans-sc@5.2.9:
+    resolution: {integrity: sha512-bTUIWGBgJDpwi5qAr+x0/lcgv80IHTB9vl6s2f6EymZEa7qYV99yNRBZuKFT+SYDKVunZrjCEhWtpxqmbXWl5Q==}
+    dev: false
+
+  /@fontsource/playfair-display@5.2.8:
+    resolution: {integrity: sha512-fUEhib70SszNhQVsGbUMSsWJhr7Je0rdeuZdtGpDNu0GKF1xJM8QhpI/y0pckU25GcChXm9TLOmeZupkvvZo2g==}
+    dev: false
 
   /@iconify-json/simple-icons@1.2.74:
     resolution: {integrity: sha512-yqaohfY6jnYjTVpuTkaBQHrWbdUrQyWXhau0r/0EZiNWYXPX/P8WWwl1DoLH5CbvDjjcWQw5J0zADhgCUklOqA==}
