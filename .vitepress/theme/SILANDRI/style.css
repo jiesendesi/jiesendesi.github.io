@@ -937,7 +937,9 @@ body {
 }
 
 .SilandriHome-hero {
+  min-height: calc(100vh - var(--vp-nav-height));
   min-height: calc(100svh - var(--vp-nav-height));
+  min-height: calc(var(--sil-vh, 1vh) * 100 - var(--vp-nav-height));
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -957,7 +959,9 @@ body {
 
 @media (min-width: 960px) {
   .SilandriHome-hero {
+    min-height: 100vh;
     min-height: 100svh;
+    min-height: calc(var(--sil-vh, 1vh) * 100);
   }
 
   .SilandriHome-hero {
@@ -1369,7 +1373,7 @@ body {
 
   .SilandriHome-hero {
     padding-top: max(18px, env(safe-area-inset-top, 0px) + 12px);
-    padding-bottom: 38px;
+    padding-bottom: 52px;
   }
 
   .SilandriHome-subtitle {
@@ -1407,11 +1411,13 @@ body {
 @supports (min-height: 100dvh) {
   .SilandriHome-hero {
     min-height: calc(100dvh - var(--vp-nav-height));
+    min-height: calc(var(--sil-vh, 1vh) * 100 - var(--vp-nav-height));
   }
 
   @media (min-width: 960px) {
     .SilandriHome-hero {
       min-height: 100dvh;
+      min-height: calc(var(--sil-vh, 1vh) * 100);
     }
   }
 }

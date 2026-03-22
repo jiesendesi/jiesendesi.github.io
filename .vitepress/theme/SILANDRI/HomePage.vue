@@ -65,6 +65,12 @@ const valueWords = computed(() => {
 });
 
 let revealObserver: IntersectionObserver | null = null;
+let viewportResizeHandler: (() => void) | null = null;
+
+const setViewportHeightVar = () => {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--sil-vh", `${vh}px`);
+};
 
 const setupRevealObserver = async () => {
   await nextTick();
@@ -72,6 +78,11 @@ const setupRevealObserver = async () => {
   if (!rootRef.value) return;
 
   const elements = rootRef.value.querySelectorAll<HTMLElement>(".sil-reveal");
+  if (typeof window.IntersectionObserver !== "function") {
+    elements.forEach((element) => element.classList.add("is-visible"));
+    return;
+  }
+
   revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -95,6 +106,14 @@ watch(isHome, (value) => {
 });
 
 onMounted(() => {
+  setViewportHeightVar();
+  viewportResizeHandler = () => {
+    setViewportHeightVar();
+    window.setTimeout(setViewportHeightVar, 80);
+  };
+  window.addEventListener("resize", viewportResizeHandler, { passive: true });
+  window.addEventListener("orientationchange", viewportResizeHandler);
+
   if (isHome.value) {
     void setupRevealObserver();
   }
@@ -102,6 +121,11 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   revealObserver?.disconnect();
+  if (viewportResizeHandler) {
+    window.removeEventListener("resize", viewportResizeHandler);
+    window.removeEventListener("orientationchange", viewportResizeHandler);
+    viewportResizeHandler = null;
+  }
 });
 </script>
 
