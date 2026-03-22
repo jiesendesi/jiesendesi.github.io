@@ -2,26 +2,46 @@ import { inBrowser, useRoute } from "vitepress";
 import { defineComponent, nextTick, onBeforeUnmount, onMounted, watch } from "vue";
 
 const SCRAMBLE_CHARS = "{}?+{^*<>[]!~";
-const TARGETS = [".VPHomeHero .name", ".VPTeamPageTitle .title"] as const;
+const TARGETS = [
+  ".VPHomeHero .name",
+  ".VPTeamPageTitle .title",
+  ".SilandriHome .sil-scramble"
+] as const;
 
 export default defineComponent({
   name: "ScrambleHeroTitle",
   setup() {
     const route = useRoute();
     let observers: IntersectionObserver[] = [];
-    let startTimeout: number | null = null;
-    let intervalId: number | null = null;
+    const timerMap = new Map<HTMLElement, { startTimeout: number | null; intervalId: number | null }>();
 
-    const clearTimers = () => {
-      if (startTimeout !== null) {
-        window.clearTimeout(startTimeout);
-        startTimeout = null;
+    const scrambleText = (text: string) =>
+      text
+        .split("")
+        .map((letter) => {
+          if (letter === " ") return " ";
+          return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+        })
+        .join("");
+
+    const clearTimers = (element?: HTMLElement) => {
+      if (element) {
+        const timers = timerMap.get(element);
+        if (!timers) return;
+
+        if (timers.startTimeout !== null) {
+          window.clearTimeout(timers.startTimeout);
+        }
+
+        if (timers.intervalId !== null) {
+          window.clearInterval(timers.intervalId);
+        }
+
+        timerMap.delete(element);
+        return;
       }
 
-      if (intervalId !== null) {
-        window.clearInterval(intervalId);
-        intervalId = null;
-      }
+      timerMap.forEach((_, key) => clearTimers(key));
     };
 
     const cleanup = () => {
@@ -35,11 +55,15 @@ export default defineComponent({
       if (!original) return;
 
       element.setAttribute("data-scramble-original", original);
-      clearTimers();
+      clearTimers(element);
+      timerMap.set(element, { startTimeout: null, intervalId: null });
 
       let iteration = 0;
-      startTimeout = window.setTimeout(() => {
-        intervalId = window.setInterval(() => {
+      const timers = timerMap.get(element);
+      if (!timers) return;
+
+      timers.startTimeout = window.setTimeout(() => {
+        timers.intervalId = window.setInterval(() => {
           const nextText = original
             .split("")
             .map((letter, index) => {
@@ -52,7 +76,7 @@ export default defineComponent({
           element.textContent = nextText;
 
           if (iteration >= original.length) {
-            clearTimers();
+            clearTimers(element);
             element.textContent = original;
           }
 
@@ -66,25 +90,35 @@ export default defineComponent({
 
       cleanup();
       TARGETS.forEach((selector) => {
-        const titleEl = document.querySelector<HTMLElement>(selector);
-        if (!titleEl) return;
+        const elements = document.querySelectorAll<HTMLElement>(selector);
 
-        const playedOnPath = titleEl.getAttribute("data-scramble-played-path");
-        if (playedOnPath === route.path) return;
+        elements.forEach((titleEl) => {
+          const original = (titleEl.getAttribute("data-scramble-original") ?? titleEl.textContent ?? "").trim();
+          if (!original) return;
 
-        const observer = new IntersectionObserver(
-          (entries) => {
-            const [entry] = entries;
-            if (!entry?.isIntersecting) return;
-            titleEl.setAttribute("data-scramble-played-path", route.path);
-            runScramble(titleEl);
-            observer.disconnect();
-          },
-          { threshold: 0.1, rootMargin: "0px 0px -20px 0px" }
-        );
+          titleEl.setAttribute("data-scramble-original", original);
+          const playedOnPath = titleEl.getAttribute("data-scramble-played-path");
+          if (playedOnPath === route.path) {
+            titleEl.textContent = original;
+            return;
+          }
 
-        observer.observe(titleEl);
-        observers.push(observer);
+          titleEl.textContent = scrambleText(original);
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              const [entry] = entries;
+              if (!entry?.isIntersecting) return;
+              titleEl.setAttribute("data-scramble-played-path", route.path);
+              runScramble(titleEl);
+              observer.disconnect();
+            },
+            { threshold: 0.1, rootMargin: "0px 0px -20px 0px" }
+          );
+
+          observer.observe(titleEl);
+          observers.push(observer);
+        });
       });
     };
 

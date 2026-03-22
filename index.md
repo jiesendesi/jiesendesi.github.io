@@ -1,6 +1,7 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
+pageClass: silandri-home
 
 hero:
   name: "SILANDRI"
@@ -10,6 +11,9 @@ hero:
     - theme: brand
       text: 阅读Wiki
       link: /guide/intro
+    - theme: Alt
+      text: 查看成员
+      link: /members
   image:
       src: /image/SILANDRI/SILANDRI.png
       alt: SILANDRI
@@ -22,4 +26,3 @@ features:
   - title: 秩序
     details: 严格执行标准化作业程序 (SOP)
 ---
-
