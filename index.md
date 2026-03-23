@@ -22,9 +22,7 @@ features:
   - title: 团结
     details: 组织的整体利益高于个人利益
   - title: 平等
-    icon: ⚖️
     details: 地位对等、零排挤政策、试错容忍
   - title: 秩序
-    icon: 📜
-    details: 严格执行标准化作业程序 (SOP)
+    details: 严格执行标准化作业程序
 ---
